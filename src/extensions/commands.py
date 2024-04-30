@@ -42,7 +42,7 @@ class Commands(commands.Cog):
 
         else:
             await context.channel.send(
-                f"{member.name} could not be tagged. There are multiple reasons for this:\n- You do do not have the {self.tag_role.name} role.\n- {member.name} are already {self.tag_role.name} tagged.\n- {member.name} don't have the {self.allow_tagging_role.name} role.")
+                f"{member.name} could not be tagged. There are multiple reasons for this:\n- You aren't tagged.\n- {member.name} is already tagged.\n- {member.name} doesn't participate in the tagging game.")
 
 
 async def setup(bot: commands.Bot):
