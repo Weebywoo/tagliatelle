@@ -1,23 +1,23 @@
 import asyncio
-import os
+from typing import Type
 
 import discord
-from dotenv import dotenv_values
+from discord.ext.commands import Cog
 
+from src import config
 from src.bot import Bot
+from src.commands import Commands
 
 
 async def main():
     intents = discord.Intents.default()
     intents.message_content = True
-    extensions = [
-        f"src.extensions.{extension.rstrip('.py')}"
-        for extension in os.listdir("src/extensions")
-        if extension.endswith(".py")
+    commands: list[Type[Cog]] = [
+        Commands
     ]
 
-    async with Bot(command_prefix="!", intents=intents, extensions=extensions) as bot:
-        await bot.start(dotenv_values()['DISCORD_TOKEN'])
+    async with Bot(command_prefix='!', intents=intents, custom_commands=commands) as bot:
+        await bot.start(config.discord_token)
 
 
 if __name__ == '__main__':

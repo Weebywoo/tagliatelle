@@ -1,3 +1,5 @@
+from typing import Optional
+
 import discord
 from discord.ext import commands
 
@@ -6,11 +8,11 @@ class Commands(commands.Cog):
     def __init__(self, bot: commands.Bot):
         super().__init__()
         self.bot = bot
-        self.tag_role: discord.Role = None
-        self.tagged_member: discord.Member = None
+        self.tag_role: Optional[discord.Role] = None
+        self.tagged_member: Optional[discord.Member] = None
         self.mention_user: bool = False
-        self.allow_tagging_role: discord.Role = None
-        self.last_tagged_members: list[discord.Member] = None
+        self.allow_tagging_role: Optional[discord.Role] = None
+        self.last_tagged_members: Optional[list[discord.Member]] = None
         self.bounce_limit: int = 1
 
     @commands.command(name='roles')
